@@ -1,10 +1,13 @@
 FROM rocker/shiny:latest
 
-RUN R -e "install.packages(c('dplyr','ggplot2','plotly','scales'), repos='https://cran.rstudio.com/')"
+RUN apt-get update && apt-get install -y \
+    libcurl4-openssl-dev \
+    libssl-dev \
+    libxml2-dev
+
+RUN R -e "install.packages(c('dplyr','plotly'), repos='https://cran.rstudio.com/')"
 
 COPY . /srv/shiny-server/
-
-RUN cd /srv/shiny-server && R -e "source('app.R')" 2>&1 || true
 
 EXPOSE 3838
 
