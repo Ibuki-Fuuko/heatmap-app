@@ -4,7 +4,6 @@ RUN R -e "install.packages(c('dplyr','ggplot2','plotly','scales'), repos='https:
 
 COPY . /srv/shiny-server/
 
-# 加这一行：测试 app.R 是否能正常加载
 RUN cd /srv/shiny-server && R -e "source('app.R')" 2>&1 || true
 
 EXPOSE 3838
