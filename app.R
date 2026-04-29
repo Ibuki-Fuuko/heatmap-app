@@ -2,7 +2,7 @@ library(shiny)
 library(plotly)
 library(dplyr)
 
-pd1 <- read.csv("pd1.csv")
+pd1 <- readRDS("/srv/shiny-server/pd1.rds")
 officer_counts <- pd1 |> dplyr::count(Officer_Name, sort = TRUE)
 ecdf_fn <- ecdf(officer_counts$n)
 
